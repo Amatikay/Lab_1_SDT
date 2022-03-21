@@ -28,6 +28,46 @@ public:
     {
         pTop = nullptr;
     }
+
+    Stack(const Stack& SL)
+    {
+        Node<T>* p;
+        Node<T>* p2;
+        Node<T>* p3;
+
+
+        pTop = nullptr;
+        p3 = nullptr;
+
+        p = SL.pTop;
+        while (p != nullptr)
+        {
+
+            try {
+
+                p2 = new Node<T>;
+            }
+            catch (bad_alloc e)
+            {
+                cout << e.what() << endl;
+                return;
+            }
+            p2->item = p->item;
+            p2->next = nullptr;
+
+            if (pTop == nullptr)
+            {
+                pTop = p2;
+                p3 = p2;
+            }
+            else
+            {
+                p3->next = p2;
+                p3 = p3->next;
+            }
+            p = p->next;
+        }
+    }
     void Push(T item)
     {
         Node<T>* p;
@@ -36,6 +76,22 @@ public:
         p->next = pTop;
         pTop = p;
         size++;
+    }
+
+    void Empty()
+    {
+        Node<T>* p;
+        Node<T>* p2;
+
+        p = pTop;
+
+        while (p != nullptr)
+        {
+            p2 = p;
+            p = p->next;
+            delete p2;
+        }
+        pTop = nullptr;
     }
 
     int Size()
