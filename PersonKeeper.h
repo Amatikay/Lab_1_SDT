@@ -5,12 +5,15 @@
 #ifndef LAB_23__1_SOFTWARE__PERSONKEEPER_H
 #define LAB_23__1_SOFTWARE__PERSONKEEPER_H
 #include "Person.h"
+#include "Stack.h"
 
 class PersonKeeper {
 public:
     PersonKeeper();
     PersonKeeper(const PersonKeeper&);
     ~PersonKeeper();
+    void readPersons();
+    void writePersons();
 };
 
 

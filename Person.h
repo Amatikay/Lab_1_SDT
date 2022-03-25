@@ -16,6 +16,7 @@ private:
     std::string first_name;
 public:
     Person();
+    Person(const std::string full_name);
     Person(const Person&);
     const std::string& getLastName() const { return last_name; }
     const std::string& getFirstName() const { return first_name; }
