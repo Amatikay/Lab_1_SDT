@@ -11,22 +11,18 @@ class PersonKeeper {
 
 private:
     PersonKeeper(){
-        Stack<Person> PersonStack;
+        //Stack<Person> PersonStack; паттерн одиночка по этому конструктор не создается
     }
-    PersonKeeper(const PersonKeeper&);
-    PersonKeeper& operator= (PersonKeeper const&);
+    PersonKeeper(const PersonKeeper&);// для патрена одиночка не реализую
+    PersonKeeper& operator= (PersonKeeper const&);// для патрена одиночка не реализую
     ~PersonKeeper(){}
     Stack<Person> PersonStack;
 
 public:
     Stack<Person> readPersons( std::string file_path);
-    //Stack<Person> readPersons( std::istream& stream);
     void writePersons(std::string file_path);
-    /*
-     * TODO
-     *  Расписать в коментариях зачем нужна Instanse()
-     */
-    static PersonKeeper& Instance(){
+    static PersonKeeper& Instance(){ //статический создающий метод
+        //создание обьекта при первом вызове метода
         static PersonKeeper s;
         return s;
     }

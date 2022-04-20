@@ -5,7 +5,6 @@
 #ifndef LAB_23__1_SOFTWARE__PERSON_H
 #define LAB_23__1_SOFTWARE__PERSON_H
 
-
 #include <string>
 
 class Person
@@ -19,8 +18,8 @@ public:
     Person(){
 
     }
-    Person(const std::string full_name);
-    Person(const Person& person){
+    Person(const std::string full_name); // получает строку, создает обьект
+    Person(const Person& person){ //конструктор копирования
         last_name = person.last_name;
         first_name = person.first_name;
         patronymic = person.patronymic;

@@ -7,7 +7,6 @@
 #include "PersonKeeper.h"
 #include "Stack.h"
 #include "Person.h"
-#include "error.h"
 #include "Exception.h"
 
 
@@ -18,7 +17,7 @@ Stack<Person> PersonKeeper::readPersons(std::string file_path) {
         /*
          * я сначала передавал
          * в readPersons(const char* file_path)
-         *
+         * конструкцию менять не стал
          */
         std::string buf("Файл ");
         buf.append(file_path);
@@ -50,12 +49,20 @@ void PersonKeeper::writePersons(std::string file_path) {
 
     std::ofstream file(file_path, std::ios::trunc); // открываем файл. удаялем все содержимое
     if (!file.is_open()){
+
+        /*
+         * Как и в readPersons
+         */
         std::string buf("Файл ");
         buf.append(file_path);
         buf.append(" не открылся");
         throw exceptions::ExceptionFile(buf.c_str());
 
     }
+    /*
+     *Передаю указатель на верхушку стека.
+     * Считываю person и записываю в файл не меняя стек.
+     */
     Person person;
     Node<Person>* p;
     p = PersonKeeper::Instance().PersonStack.get_topPtr();

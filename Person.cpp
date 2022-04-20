@@ -20,22 +20,26 @@ Person::Person(const std::string full_name) {
         if ((count(full_name.begin(), full_name.end(), ' '))!=2){
         throw exceptions::ExceptionData("В ФИО не 3 слова");
         }
+        /*
+         * Строку переданную в качетве аргумента преобразую
+         * в вектор для разбиения по словам
+         */
         std::vector<std::string> full_name_vector;
         std::istringstream ss(full_name);
         std::string word;
-       /* do{
-            full_name_vector.push_back(word);
-        }while (ss >> word);*/
-       /*
-        * Отчество не отделяется закомментированным
-        * способом. Разобраться почему
-        */
+
         ss >> word;
          full_name_vector.push_back(word);
         ss >> word;
          full_name_vector.push_back(word);
         ss >> word;
          full_name_vector.push_back(word);
+
+
+         /*
+          * Отдельные проверки на пустоту имени, фамилии, отчества
+          */
+
          if (full_name_vector[0]==""){
              throw exceptions::ExceptionData("Имя пустое!");
          }

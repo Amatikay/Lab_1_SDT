@@ -11,26 +11,28 @@ using namespace std;
 
 
 template <typename T>
-struct Node
+struct Node //структура однонаправленного связного списка
 {
-    T item;
-    Node<T>* next;
+    T item; // "этот" элемент
+    Node<T>* next; //указатель на следующий элемент
 };
-
+/*
+ * Шаблонный класс стек на списке
+ */
 template <typename T>
 class Stack
 {
 private:
     Node<T>* pTop; // указатель на верхушку стека
-    int size = 0;
+    int size = 0; //размер стека
 public:
 
-    Stack()
+    Stack() // контруктор по умолчанию
     {
-        pTop = nullptr;
+        pTop = nullptr; // в качетве верхушки получаем константу нулевого указателя
     }
 
-    Stack(const Stack& SL)
+    Stack(const Stack& SL) //конструктор копирования
     {
         Node<T>* p;
         Node<T>* p2;
@@ -69,7 +71,7 @@ public:
             p = p->next;
         }
     }
-    void Push(T item)
+    void Push(T item) //добавить в стек элемент
     {
         Node<T>* p;
         p = new Node<T>;
@@ -79,7 +81,7 @@ public:
         size++;
     }
 
-    void Empty()
+    void Clear() // очистить стек
     {
         Node<T>* p;
         Node<T>* p2;
@@ -95,11 +97,11 @@ public:
         pTop = nullptr;
     }
 
-    int Size()
+    int Size() //размер стека
     {
         return size;
     }
-    void Print()
+    void Print() // вывести стек не изменяя его
     {
         if (pTop == nullptr)
             throw EStackEmpty();
@@ -117,7 +119,7 @@ public:
         }
     }
 
-    ~Stack()
+    ~Stack() //деструктор
     {
         Node<T>* p;
         Node<T>* p2;
@@ -131,7 +133,7 @@ public:
         pTop = nullptr;
     }
 
-    T Pop()
+    T Pop() //вернуть последний элемент с удалением его
     {
         if (pTop == nullptr)
             throw EStackEmpty();
@@ -145,7 +147,7 @@ public:
         return item;
     }
 
-    Node<struct Person> *const get_topPtr() const{
+    Node<struct Person> *const get_topPtr() const{ //получить указатель на верхушку стека
         return pTop;
     }
 
