@@ -8,12 +8,29 @@
 #include "Stack.h"
 
 class PersonKeeper {
-public:
-    PersonKeeper();
+
+private:
+    PersonKeeper(){
+        Stack<Person> PersonStack;
+    }
     PersonKeeper(const PersonKeeper&);
-    ~PersonKeeper();
-    void readPersons();
-    void writePersons();
+    PersonKeeper& operator= (PersonKeeper const&);
+    ~PersonKeeper(){}
+    Stack<Person> PersonStack;
+
+public:
+    Stack<Person> readPersons( std::string file_path);
+    void writePersons(std::string file_path);
+    /*
+     * TODO
+     *  Расписать в коментариях зачем нужна Instanse()
+     */
+    static PersonKeeper& Instance(){
+        static PersonKeeper s;
+        return s;
+    }
+
+
 };
 
 

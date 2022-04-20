@@ -6,7 +6,7 @@
 #define STACKLIB_STACK_H
 
 #include <iostream>
-#include"EStackEmpty.h"
+#include"EStackException.h"
 using namespace std;
 
 
@@ -21,9 +21,10 @@ template <typename T>
 class Stack
 {
 private:
-    Node<T>* pTop;
+    Node<T>* pTop; // указатель на верхушку стека
     int size = 0;
 public:
+
     Stack()
     {
         pTop = nullptr;
@@ -143,6 +144,11 @@ public:
         size--;
         return item;
     }
+
+    Node<struct Person> *const get_topPtr() const{
+        return pTop;
+    }
+
 };
 
 

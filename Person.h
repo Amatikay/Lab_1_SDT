@@ -14,14 +14,23 @@ private:
     long key;
     std::string last_name;
     std::string first_name;
+    std::string patronymic;
 public:
-    Person();
+    Person(){
+
+    }
     Person(const std::string full_name);
-    Person(const Person&);
+    Person(const Person& person){
+        last_name = person.last_name;
+        first_name = person.first_name;
+        patronymic = person.patronymic;
+    }
     const std::string& getLastName() const { return last_name; }
     const std::string& getFirstName() const { return first_name; }
-    void setLastName(const std::string&);
-    void setFirstname(const std::string&);
+    const std::string& getPatronymic() const { return patronymic; }
+    void setLastName(const std::string &last);
+    void setFirstname(const std::string &first);
+    void setPatronymic(const std::string &patronymic);
 };
 
 
