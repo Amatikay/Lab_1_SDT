@@ -10,7 +10,7 @@
 class PersonKeeper {
 
 private:
-    PersonKeeper(){
+    PersonKeeper(){//4.  конструктор класса приватный.
         //Stack<Person> PersonStack; паттерн одиночка по этому конструктор не создается
     }
     PersonKeeper(const PersonKeeper&);// для патрена одиночка не реализую
@@ -21,8 +21,9 @@ private:
 public:
     Stack<Person> readPersons( std::string file_path);
     void writePersons(std::string file_path);
-    static PersonKeeper& Instance(){ //статический создающий метод
-        //создание обьекта при первом вызове метода
+    static PersonKeeper& Instance(){ //2. Объявите статический создающий метод
+        //3. ленивая инициализация
+        // создание обьекта при первом вызове метода
         static PersonKeeper s;
         return s;
     }

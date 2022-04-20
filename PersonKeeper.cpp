@@ -26,7 +26,7 @@ Stack<Person> PersonKeeper::readPersons(std::string file_path) {
     }
 
     while(getline(file, s)){ //"file >> ..." не сработает тк, считывает до первого пробела. Я считываю всю строку и разбиваю на подстроки
-        if (s =="" /*std::string::npos*/){
+        if (s ==""){
             file.close();
             throw exceptions::ExceptionData("Пустая строка");
         }
