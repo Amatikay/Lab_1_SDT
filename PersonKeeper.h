@@ -20,6 +20,7 @@ private:
 
 public:
     Stack<Person> readPersons( std::string file_path);
+    //Stack<Person> readPersons( std::istream& stream);
     void writePersons(std::string file_path);
     /*
      * TODO

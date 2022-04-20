@@ -42,8 +42,8 @@ public:
 
 class EStackOverflow : public EStackException{
 public:
-    explicit EStackOverflow() {
-        std::cerr << "A stack is empty." << std::endl;
+    EStackOverflow() : EStackException(){
+        std::cerr << "A stack is overflow." <<std::endl;
     }
 
 };

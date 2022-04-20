@@ -3,26 +3,31 @@
 //
 #include <string>
 #include "Person.h"
+#include "Exception.h"
 #include <iostream>
 #include <vector>
 #include <sstream>
 Person::Person(const std::string full_name) {
 
 
-
-
-    try {
+        /*
+         * Я эти случаи уже проверил в PersonKeeper.cpp
+         * но на всякий случаи прописал тут тоже
+         */
+        if(full_name==""){
+            throw exceptions::ExceptionData("ФИО пустое");
+        }
+        if ((count(full_name.begin(), full_name.end(), ' '))!=2){
+        throw exceptions::ExceptionData("В ФИО не 3 слова");
+        }
         std::vector<std::string> full_name_vector;
         std::istringstream ss(full_name);
         std::string word;
-
-
-
        /* do{
             full_name_vector.push_back(word);
         }while (ss >> word);*/
        /*
-        * Отчество не отделяется закоментированным
+        * Отчество не отделяется закомментированным
         * способом. Разобраться почему
         */
         ss >> word;
@@ -31,34 +36,18 @@ Person::Person(const std::string full_name) {
          full_name_vector.push_back(word);
         ss >> word;
          full_name_vector.push_back(word);
-
-
-
+         if (full_name_vector[0]==""){
+             throw exceptions::ExceptionData("Имя пустое!");
+         }
         first_name = full_name_vector[0];
+        if (full_name_vector[1]==""){
+            throw exceptions::ExceptionData("Фамилия пустая!");
+        }
         last_name = full_name_vector[1];
+        if (full_name_vector[2]==""){
+            throw exceptions::ExceptionData("Отчество пустое!");
+        }
         patronymic = full_name_vector[2];
-
-    }
-    catch (...) {
-        /*
-         * TODO
-         *  Тут нужно расписать возможные исключения:
-         *  Фамилия и(или) Имя и(или) Отчество не введены
-         *  (строка имеет не 3 подстроки разделенные пробелами)
-         *  Пустая строка (std::string::npos)
-         *  В строке больше "слов", чем 3.
-         *
-         *  Это может вызвать некоторые проблемы, такие как имена изх нескольки слов
-         *  " Ксения Хаджы Оглы (Отчество) "
-         *  Возможно проще будет создать метод, куда буду передавать фио отдельными аргументами
-         *
-         *
-         */
-        std::cout << "Ошибка с данными" << std::endl;
-        throw;
-    }
-
-
 }
 
 void Person::setLastName(const std::string &last) {
@@ -72,4 +61,7 @@ void Person::setFirstname(const std::string &first) {
 void Person::setPatronymic(const std::string &patronymic) {
     Person::patronymic = patronymic;
 }
+
+
+
 
